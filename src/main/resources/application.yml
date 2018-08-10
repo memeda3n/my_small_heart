@@ -1,0 +1,7 @@
+
+server:
+  port: 8090
+  
+user1 : 
+   name : 阿里巴巴
+   age : 100

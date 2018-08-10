@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import cn.demo.entity.User;
 import cn.inital.MyInitalizer;
 import cn.listener.demo.MyApplicationEvent;
 
@@ -21,6 +22,8 @@ public class MySmallHeartApplication {
 		
 		context.publishEvent(new MyApplicationEvent(new Object()));
 		//System.out.println(context.getBean(MyApplicationListener.class));
+		User user=context.getBean(User.class);
+		System.out.println(user.getName()+"   "+user.getAge());
 		
 		context.close();
 	}
