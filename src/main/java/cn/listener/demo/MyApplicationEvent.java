@@ -2,6 +2,9 @@ package cn.listener.demo;
 
 import org.springframework.context.ApplicationEvent;
 
+import cn.demo.controller.UserController;
+import cn.demo.entity.User;
+
 public class MyApplicationEvent extends ApplicationEvent{
 
 	/**
@@ -13,6 +16,13 @@ public class MyApplicationEvent extends ApplicationEvent{
 		super(source);
 	}
 
+	public void ofUser(UserController user){
+		if (user!=null) {
+			System.out.println(user);
+		}else {
+			System.out.println("user is null");
+		}
+	}
 	
 	
 }

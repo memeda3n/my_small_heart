@@ -9,6 +9,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import cn.demo.entity.User;
 import cn.inital.MyInitalizer;
 import cn.listener.demo.MyApplicationEvent;
+import cn.listener.demo.MyApplicationListener;
 
 @SpringBootApplication
 @EnableConfigurationProperties
@@ -21,10 +22,10 @@ public class MySmallHeartApplication {
 		//context.addApplicationListener(new MyApplicationListener());
 		
 		context.publishEvent(new MyApplicationEvent(new Object()));
-		//System.out.println(context.getBean(MyApplicationListener.class));
-		User user=context.getBean(User.class);
-		System.out.println(user.getName()+"   "+user.getAge());
+		System.out.println(context.getBean(MyApplicationListener.class));
+		//User user=context.getBean(User.class);
+		//System.out.println(user.getName()+"   "+user.getAge());
 		
-		context.close();
+		//context.close();
 	}
 }
