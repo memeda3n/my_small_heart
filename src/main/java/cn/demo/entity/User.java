@@ -1,7 +1,6 @@
 package cn.demo.entity;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-@ConfigurationProperties("user1")
+//@ConfigurationProperties("user1")
 public class User {
 
 	//@Value("${name:hellp} ")
@@ -10,6 +9,17 @@ public class User {
 	
 //	@Value("${user.age}")
 	private Integer age;
+
+	private Long id;
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;

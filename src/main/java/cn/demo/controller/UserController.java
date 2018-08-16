@@ -11,6 +11,7 @@ public class UserController {
 	@GetMapping("user")
 	public String user(){
 		System.out.println(" this is user controller");
+		
 		return " this is user controller";
 	}
 }

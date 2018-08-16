@@ -5,3 +5,17 @@ server:
 user1 : 
    name : 阿里巴巴
    age : 100
+   
+spring:
+  datasource:
+     name: boot
+     url: jdbc:mysql://192.168.1.30:3306/ework_dev?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+     username: dev
+     password: dev@tq365
+     driver-class-name: com.mysql.jdbc.Driver
+    #name: boot
+    # url: jdbc:mysql://192.168.106.78:3306/boot?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    # url: jdbc:mysql://192.168.1.30:3306/ework_dev?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    # username: jim
+    # password: 784689memeda3n
+    # driver-class-name: com.mysql.jdbc.Driver

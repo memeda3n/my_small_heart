@@ -1,4 +1,4 @@
-package com.example.demo;
+package cn.demo.confige;
 
 //@Configuration
 //@EnableScheduling

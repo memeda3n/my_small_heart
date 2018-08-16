@@ -3,15 +3,13 @@ package cn;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import cn.demo.entity.User;
 import cn.inital.MyInitalizer;
-import cn.listener.demo.MyApplicationEvent;
-import cn.listener.demo.MyApplicationListener;
 
-@SpringBootApplication
+@SpringBootApplication//(exclude= {DataSourceAutoConfiguration.class})
 @EnableConfigurationProperties
 public class MySmallHeartApplication {
 
@@ -21,8 +19,8 @@ public class MySmallHeartApplication {
 		ConfigurableApplicationContext context=application.run(args);
 		//context.addApplicationListener(new MyApplicationListener());
 		
-		context.publishEvent(new MyApplicationEvent(new Object()));
-		System.out.println(context.getBean(MyApplicationListener.class));
+		//context.publishEvent(new MyApplicationEvent(new Object()));
+		//System.out.println(context.getBean(MyApplicationListener.class));
 		//User user=context.getBean(User.class);
 		//System.out.println(user.getName()+"   "+user.getAge());
 		
