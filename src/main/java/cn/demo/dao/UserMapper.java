@@ -7,10 +7,10 @@ import org.apache.ibatis.annotations.Select;
 
 import cn.demo.entity.User;
 
-@Mapper
+//@Mapper
 public interface UserMapper {
 
-	@Select("select * from user")
+	//@Select("select * from user")
 	List<User> getUsers();
 	
 }

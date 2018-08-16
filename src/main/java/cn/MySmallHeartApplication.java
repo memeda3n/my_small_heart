@@ -1,9 +1,9 @@
 package cn;
 
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ConfigurableApplicationContext;
 
@@ -11,6 +11,7 @@ import cn.inital.MyInitalizer;
 
 @SpringBootApplication//(exclude= {DataSourceAutoConfiguration.class})
 @EnableConfigurationProperties
+@MapperScan("cn.demo.dao")
 public class MySmallHeartApplication {
 
 	public static void main(String[] args) {

@@ -15,8 +15,8 @@ public class UserServiceImlp implements UserService {
 	@Resource
 	private UserMapper userMapper;
 	
-	public void getUser(){
-		List<User> list=userMapper.getUsers();
-		System.out.println(list.size());
+	@Override
+	public List<User> getUsers() {
+		return userMapper.getUsers();
 	}
 }
