@@ -9,7 +9,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import cn.inital.MyInitalizer;
 
-@SpringBootApplication//(exclude= {DataSourceAutoConfiguration.class})
+@SpringBootApplication
 @EnableConfigurationProperties
 @MapperScan("cn.demo.dao")
 public class MySmallHeartApplication {
