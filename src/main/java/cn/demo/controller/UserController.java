@@ -28,7 +28,6 @@ public class UserController {
 		String key="1_user4";
 		redisTemplate.opsForValue().set(key, "张三4");
 		System.out.println(" this is user controller");
-		
 		List<User> users=userService.getUsers();
 		System.out.println(users.size());
 		System.out.println(valOpsObj.get(key));
