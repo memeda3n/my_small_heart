@@ -9,7 +9,7 @@ user1 :
 spring:
   datasource:
      name: boot
-     url: jdbc:mysql://192.168.106.78:3306/boot?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+     url: jdbc:mysql://192.168.106.102:3306/boot?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
      username: memeda
      password: 123456789
      driver-class-name: com.mysql.jdbc.Driver

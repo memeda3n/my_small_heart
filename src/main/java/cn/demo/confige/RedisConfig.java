@@ -26,30 +26,30 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class RedisConfig extends CachingConfigurerSupport {
 	@Value("${spring.redis.host}")
 	private String host;
-	
+
 	@Value("${spring.redis.port}")
 	private int port;
-	
+
 	@Value("${spring.redis.database}")
 	private int dataBase;
-	
+
 	@Value("${spring.redis.timeout}")
 	private int timeout;
-	
+
 	@Bean
 	JedisConnectionFactory jedisConnectionFactory() {
-		 RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration ();
-	        redisStandaloneConfiguration.setHostName(host);
-	        redisStandaloneConfiguration.setPort(port);
-	        redisStandaloneConfiguration.setDatabase(dataBase);
-	        redisStandaloneConfiguration.setPassword(RedisPassword.of(""));
-	        JedisClientConfiguration.JedisClientConfigurationBuilder jedisClientConfiguration = JedisClientConfiguration.builder();
-	        jedisClientConfiguration.connectTimeout(Duration.ofMillis(timeout));//  connection timeout
-	        JedisConnectionFactory factory = new JedisConnectionFactory(redisStandaloneConfiguration,
-	                jedisClientConfiguration.build());
-	        return factory;
+		RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration ();
+		redisStandaloneConfiguration.setHostName(host);
+		redisStandaloneConfiguration.setPort(port);
+		redisStandaloneConfiguration.setDatabase(dataBase);
+		redisStandaloneConfiguration.setPassword(RedisPassword.of(""));
+		JedisClientConfiguration.JedisClientConfigurationBuilder jedisClientConfiguration = JedisClientConfiguration.builder();
+		jedisClientConfiguration.connectTimeout(Duration.ofMillis(timeout));//  connection timeout
+		JedisConnectionFactory factory = new JedisConnectionFactory(redisStandaloneConfiguration,
+				jedisClientConfiguration.build());
+		return factory;
 	}
-/*	@Bean
+	/*	@Bean
 	public RedisTemplate<String, Object> setRedisTemplate() {
 		RedisTemplate<String, Object> redisTemplate=new RedisTemplate<>();
 		StringRedisSerializer  stringSerializer = new StringRedisSerializer();
@@ -62,31 +62,31 @@ public class RedisConfig extends CachingConfigurerSupport {
 		return redisTemplate;
 	}*/
 
-	  /**
-     * RedisTemplate配置
-     * @param factory
-     * @return
-     * 
-     *参照 https://www.cnblogs.com/liuchuanfeng/p/7009027.html
-     * 
-     */
-    @Bean
-    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
-        StringRedisTemplate template = new StringRedisTemplate(factory);
-        //定义key序列化方式
-        //RedisSerializer<String> redisSerializer = new StringRedisSerializer();//Long类型会出现异常信息;需要我们上面的自定义key生成策略，一般没必要
-        //定义value的序列化方式
-        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
-        ObjectMapper om = new ObjectMapper();
-        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-        jackson2JsonRedisSerializer.setObjectMapper(om);
-       // template.setKeySerializer(redisSerializer);
-        template.setValueSerializer(jackson2JsonRedisSerializer);
-        template.setHashValueSerializer(jackson2JsonRedisSerializer);
-        template.afterPropertiesSet();
-        return template;
-    }
-    
-    
+	/**
+	 * RedisTemplate配置
+	 * @param factory
+	 * @return
+	 * 
+	 *参照 https://www.cnblogs.com/liuchuanfeng/p/7009027.html
+	 * 
+	 */
+	@Bean
+	public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
+		StringRedisTemplate template = new StringRedisTemplate(factory);
+		//定义key序列化方式
+		//RedisSerializer<String> redisSerializer = new StringRedisSerializer();//Long类型会出现异常信息;需要我们上面的自定义key生成策略，一般没必要
+		//定义value的序列化方式
+		Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+		ObjectMapper om = new ObjectMapper();
+		om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+		om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+		jackson2JsonRedisSerializer.setObjectMapper(om);
+		// template.setKeySerializer(redisSerializer);
+		template.setValueSerializer(jackson2JsonRedisSerializer);
+		template.setHashValueSerializer(jackson2JsonRedisSerializer);
+		template.afterPropertiesSet();
+		return template;
+	}
+
+
 }
