@@ -8,6 +8,11 @@ public class Node {
 	
 	private Node rightNode;
 
+	public Node(){}
+	
+	public Node(int data){
+		this.data=data;
+	}
 
 	public int getData() {
 		return data;
