@@ -16,8 +16,8 @@ public class App {
 		service.insert(365);
 		service.insert(1354);
 		
-		int num=service.delete(1223);
-		System.out.println("num="+num);
+		boolean is =service.deleteNode(1354);
+		System.out.println("boolean="+is);
 		service.display(service.root.getRoot());
 		
 	}

@@ -143,4 +143,84 @@ public class TreeService {
 	}
 
 
+	public boolean deleteNode(int num){
+		Node node=new Node(num);
+		
+		//找结点
+		Node parent=root.getRoot();
+		Node current=root.getRoot();
+		boolean isLeft=false;
+		while(current.getData()!=node.getData()){
+			if (current.getData()>node.getData()) {
+				parent=current;
+				current=current.getLeftNode();
+				isLeft=true;
+			}else {
+				parent=current;
+				current=current.getRightNode();
+				isLeft=false;
+			}
+			if (current==null) {
+				return false;
+			}
+		}
+		if (current.getLeftNode()==null&&current.getRightNode()==null) {
+			//没有子节点
+			if (current==root.getRoot()) {
+				root.setRoot(null);
+			}else if(isLeft) {
+				parent.setLeftNode(null);
+			}else {
+				parent.setRightNode(null);
+			}
+		}else if (current.getLeftNode()==null||current.getRightNode()==null) {
+			if (isLeft) {
+				if (current.getLeftNode()!=null) {
+					parent.setLeftNode(current.getLeftNode());
+				}else {
+					parent.setLeftNode(current.getRightNode());
+				}
+			} else {
+				if (current.getLeftNode()!=null) {
+					parent.setRightNode(current.getLeftNode());
+				}else {
+					parent.setRightNode(current.getRightNode());
+				}
+			}
+		} else {
+			//找后继结点
+			Node sucessor=getSuccessor(current);
+			
+			if (current==root.getRoot()) {
+				root.setRoot(sucessor);
+			}else if (isLeft) {
+				parent.setLeftNode(sucessor);
+			}else {
+				parent.setRightNode(sucessor);
+			}
+			sucessor.setLeftNode(current.getLeftNode());
+		}
+		return true;
+	}
+	
+	public Node getSuccessor(Node delNode){
+		
+		Node sucessorParent=delNode;
+		Node sucessor=delNode;
+		Node current=delNode.getRightNode();
+		//找到后继结点
+		while(current!=null){
+			sucessorParent=sucessor;
+			sucessor=current;
+			current=current.getLeftNode();
+		}
+		
+		if (sucessor!=delNode.getRightNode()) {
+			sucessorParent.setLeftNode(sucessor.getRightNode());
+			sucessor.setRightNode(delNode.getRightNode());
+		}
+		
+		return sucessor;
+	}
+	
 }
